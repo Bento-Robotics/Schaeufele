@@ -1,8 +1,3 @@
-# dependencies
-```
-sudo apt install -y dnsmasq
-```
-
 # usb ethernet gadget
 *Make usb→computer connection work as network interface*
 
@@ -23,23 +18,21 @@ dtoverlay=dwc2
 > [!IMPORTANT]
 > reboot to make changes take effect
 
-## configure networking
+## configure networks (no longer working!)
 Set up usb interface:
 > /etc/network/interfaces
 
 
-### dnsmasq
-*DHCP & DNS server to make `ssh bento-dev` possible and automatically assign IPs to computers attached over USB*
+### networking
+*DHCP (& DNS) server to make `ssh bento-dev` possible and automatically assign IPs to computers attached over USB and WiFi*
 
-> /etc/dnsmasq.d/bento-dev.conf
+> /etc/NetworkManager/system-connections/schaeufele_wifi.nmconnection
 
-Make 'bento-dev' route to pi's IP
+
+Make 'bento-dev' route to pi's IP (currently not working)
 > /etc/hosts
 ```
 ⦗...⦘
 
 192.168.56.10	bento-dev
 ```
-
-> [!IMPORTANT]
-> reboot or run `systemctl restart dnsmasq.service` to make changes take effect
