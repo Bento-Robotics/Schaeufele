@@ -2,15 +2,19 @@ FROM bentorobotics/rosbox:robot
 
 WORKDIR /bento_ws
 
-# Install dependencies & utilities
-RUN apt-get update && apt-get install -y \
-	ros-humble-camera-ros \
-	&& rm -rf /var/lib/apt/lists/*
-
 # Get sources
-RUN cd src/		&&\
-    git clone https://github.com/Bento-Robotics/bento_drive	&&\
-    cd -
+RUN git clone https://github.com/Bento-Robotics/bento_drive src/bento_drive	&&\
+    git clone https://github.com/christianrauch/camera_ros src/camera_ros	&&\
+    git -C ./src/camera_ros checkout fix_dynamic_extent
+
+# Build workspace
+RUN apt-get update &&\
+    bash -c " \
+        . /opt/ros/$ROS_DISTRO/setup.bash &&\
+        rosdep install --from-paths src --ignore-src --skip-keys='image_view ament_lint_auto ament_cmake_clang_format ament_cmake_cppcheck ament_cmake_flake8 ament_cmake_lint_cmake ament_cmake_mypy ament_cmake_pep257 ament_cmake_pyflakes ament_cmake_xmllint' &&\
+        colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release \
+    " &&\
+    rm -rf /var/lib/apt/lists/*
 
 # Build workspace
 RUN bash -c " \
