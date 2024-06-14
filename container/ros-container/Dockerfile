@@ -9,6 +9,7 @@ RUN git clone https://github.com/Bento-Robotics/bento_drive src/bento_drive	&&\
 
 # Build workspace
 RUN apt-get update &&\
+    apt-get install ros-humble-rplidar-ros &&\
     bash -c " \
         . /opt/ros/$ROS_DISTRO/setup.bash &&\
         rosdep install --from-paths src --ignore-src --skip-keys='image_view ament_lint_auto ament_cmake_clang_format ament_cmake_cppcheck ament_cmake_flake8 ament_cmake_lint_cmake ament_cmake_mypy ament_cmake_pep257 ament_cmake_pyflakes ament_cmake_xmllint' &&\
