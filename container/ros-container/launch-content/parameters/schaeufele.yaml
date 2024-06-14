@@ -16,7 +16,7 @@
     controllers: 4
 
     controller0:
-      canID: 0
+      canID: 1
       gearRatio: 44.0
       encoderRatio: 2048.0
       rpmMax: 204.0
@@ -26,10 +26,10 @@
         kinematics: [-3.0, 0.0, -6.1]
       drive1:
         channel: 1
-        kinematics: [-3.0, 0.0, -6.1]
+        kinematics: [3.0, 0.0, 6.1]
 
     controller1:
-      canID: 1
+      canID: 0
       gearRatio: 44.0
       encoderRatio: 2048.0
       rpmMax: 204.0
@@ -48,10 +48,10 @@
       invertEnc: 1
       drive0:
         channel: 0
-        kinematics: [3.0, 0.0, -6.1]
+        kinematics: [-3.0, 0.0, -6.1]
       drive1:
         channel: 1
-        kinematics: [3.0, 0.0, -6.1]
+        kinematics: [3.0, 0.0, 6.1]
 
     controller3:
       canID: 3
