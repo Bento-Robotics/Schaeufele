@@ -2,7 +2,7 @@
   ros__parameters:
     usingPowerManagementBoard: true
     verbosity: false
-    canInterface: CAN2
+    canInterface: can2
     frequencyScale: 32
     inputWeight: 0.2
     maxPulseWidth: 100
@@ -15,20 +15,20 @@
 
     controllers: 4
 
-#Kette vorne
+#Ketten vorne
     controller0:
       canID: 0
       gearRatio: 44.0
       encoderRatio: 2048.0
       rpmMax: 204.0
       invertEnc: 1
-#      doKinematics: false
+      doKinematics: true
       drive0:
         channel: 0
-        kinematics: [3.0, 0.0, 6.1]
+        kinematics: [9.0, 0.0, 9.0]
       drive1:
         channel: 1
-        kinematics: [-3.0, 0.0, -6.1]
+        kinematics: [-9.0, 0.0, -9.0]
 
 #Flipper vorne
     controller1:
@@ -37,28 +37,26 @@
       encoderRatio: 2048.0
       rpmMax: 204.0
       invertEnc: 1
-      doKinematics: false
+      doKinematics: true
       drive0:
         channel: 0
-#        kinematics: [3.0, 0.0, 6.1]
+        kinematics: [9.0, 0.0, 9.0]
       drive1:
         channel: 1
-#        kinematics: [-3.0, 0.0, -6.1]
+        kinematics: [-9.0, 0.0, -9.0]
 
-#Kette hinten
+#Ketten hinten
     controller2:
       canID: 2
       gearRatio: 44.0
       encoderRatio: 2048.0
       rpmMax: 204.0
       invertEnc: 1
-#      doKinematics: false
+      doKinematics: false
       drive0:
         channel: 0
-        kinematics: [-3.0, 0.0, -6.1]
       drive1:
         channel: 1
-        kinematics: [3.0, 0.0, 6.1]
 
 #Flipper hinten
     controller3:
@@ -70,7 +68,5 @@
       doKinematics: false
       drive0:
         channel: 0
-#        kinematics: [-3.0, 0.0, -6.1]
       drive1:
         channel: 1
-#        kinematics: [3.0, 0.0, 6.1]

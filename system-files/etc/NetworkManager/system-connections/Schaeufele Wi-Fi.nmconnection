@@ -1,0 +1,25 @@
+[connection]
+id=Schaeufele Wi-Fi
+uuid=145d1a49-36bb-4bca-8e98-c655caf185ca
+type=wifi
+interface-name=wlan0
+
+[wifi]
+band=a
+channel=165
+mode=ap
+ssid=Schaeufele
+
+[wifi-security]
+key-mgmt=wpa-psk
+psk=Schaeufele
+
+[ipv4]
+address1=192.168.85.1/24
+method=shared
+
+[ipv6]
+addr-gen-mode=default
+method=disabled
+
+[proxy]
