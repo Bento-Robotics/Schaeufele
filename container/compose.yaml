@@ -5,6 +5,7 @@ services:
     image: bentorobotics/rosbox:robot
     container_name: schaeufele-ros
     privileged: true
+    init: true
     restart: always
     network_mode: host
     #environment: ['LD_LIBRARY_PATH=/usr/local/lib/aarch64-linux-gnu/'] # cam won't find libcamera.so on arm64 without this
