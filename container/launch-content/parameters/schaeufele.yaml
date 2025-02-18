@@ -15,39 +15,9 @@
 
     controllers: 4
 
-#Ketten vorne
-    controller0:
-      canID: 0
-      gearRatio: 44.0
-      encoderRatio: 2048.0
-      rpmMax: 204.0
-      invertEnc: 1
-      doKinematics: true
-      drive0:
-        channel: 0
-        kinematics: [9.0, 0.0, 9.0]
-      drive1:
-        channel: 1
-        kinematics: [-9.0, 0.0, -9.0]
-
 #Flipper vorne
-    controller1:
+    controller0:
       canID: 1
-      gearRatio: 44.0
-      encoderRatio: 2048.0
-      rpmMax: 204.0
-      invertEnc: 1
-      doKinematics: true
-      drive0:
-        channel: 0
-        kinematics: [9.0, 0.0, 9.0]
-      drive1:
-        channel: 1
-        kinematics: [-9.0, 0.0, -9.0]
-
-#Ketten hinten
-    controller2:
-      canID: 2
       gearRatio: 44.0
       encoderRatio: 2048.0
       rpmMax: 204.0
@@ -59,8 +29,8 @@
         channel: 1
 
 #Flipper hinten
-    controller3:
-      canID: 3
+    controller1:
+      canID: 0
       gearRatio: 44.0
       encoderRatio: 2048.0
       rpmMax: 204.0
@@ -70,3 +40,33 @@
         channel: 0
       drive1:
         channel: 1
+
+#Ketten vorne 
+    controller2:
+      canID: 3
+      gearRatio: 44.0
+      encoderRatio: 2048.0
+      rpmMax: 204.0
+      invertEnc: 1
+      doKinematics: true
+      drive0:
+        channel: 0
+        kinematics: [9.0, 0.0, -9.0]
+      drive1:
+        channel: 1
+        kinematics: [-9.0, 0.0, -9.0]
+
+#Ketten hinten
+    controller3:
+      canID: 2
+      gearRatio: 44.0
+      encoderRatio: 2048.0
+      rpmMax: 204.0
+      invertEnc: 1
+      doKinematics: true
+      drive0:
+        channel: 0
+        kinematics: [9.0, 0.0, -9.0]
+      drive1:
+        channel: 1
+        kinematics: [-9.0, 0.0, -9.0]

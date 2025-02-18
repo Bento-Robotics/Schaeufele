@@ -1,6 +1,6 @@
 /**:
   ros__parameters:
-    #format: "RGB888" # pixel format of streaming buffer
+    format: "MJPEG" # pixel format of streaming buffer
     role: "video"    # stream role (one of {raw, still, video, viewfinder})
     width: 640       # image dimensions
     height: 480      # "
