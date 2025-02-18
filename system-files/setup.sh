@@ -49,3 +49,6 @@ if [ "$YN" = "y" ]||[ "$YN" = "Y" ]; then
   set_owner_and_group_to_root $DEST_SYSD_CAN
 fi
 unset YN
+
+# disable IPv6
+cat ./etc/sysctl.conf | sudo tee -a /etc/sysctl.conf

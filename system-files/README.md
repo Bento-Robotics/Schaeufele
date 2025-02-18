@@ -50,6 +50,8 @@ dtoverlay=dwc2
 
 # networking
 
+> /etc/sysctl.conf
+
 > /etc/NetworkManager/system-connections/*
 ```
 sudo chmod 600 ./*
@@ -64,6 +66,7 @@ Make 'bento-dev' route to pi's IP (currently not working)
 ```
 192.168.56.10	bento-dev
 ```
+
 
 > [!IMPORTANT]
 > reboot to make changes take effect
