@@ -1,10 +1,14 @@
-# All files for <insert name>
+# Schäufele 
 
-**This repo and [Wiki](https://github.com/Bento-Robotics/Schaeufele/wiki) (are planned to) contain all information needed to rebuild <insert name> from scratch.**
+![picture of Schaeufele](./Schaeufele.jpg)
+
+*The third robot by WLS robotics, masterful at stairs and ledges.*  
+This repo and its [wiki](https://github.com/Bento-Robotics/Schaeufele/wiki) (are planned to) contain all information needed to rebuild Schäufele from scratch.
 
 ## [system-files](./system-files/README.md)
-Raspi software changes
-
+All system software changes made on Schäufele's computer.  
+*networking, software installation*
 
 ## [container](./container/README.md)
-Demonstrates how to use libcamera in a container
+The container system for robotics software.  
+*ROS, fixing hangups*
