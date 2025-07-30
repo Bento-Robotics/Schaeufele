@@ -1,54 +1,39 @@
+GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-set_owner_and_group_to_root () {
-  sudo chown root "$1"
-  sudo chgrp root "$1"
+# (permissions, user, group, destination)
+# source is assumed to be "./destination"
+install_thingy() {
+  if [ -e $4 ]; then
+    printf "${YELLOW}WARN: file '$4' already exists. Overwrite? (y/n)${NC}%s "
+    read -r YN
+  else
+    YN="Y"
+  fi
+  if [ "$YN" = "y" ]||[ "$YN" = "Y" ]; then
+    install -D -m $1 -o $2 -g $3 "./$4" $4
+    printf "${GREEN}OK: $4${NC}%s "
+  fi
 }
 
-DEST_SYSCON_ETH="/etc/NetworkManager/system-connections/Schaeufele_Ethernet.nmconnection"
-if [ -e $DEST_SYSCON_ETH ]; then
-  printf "${YELLOW}WARN: file '$DEST_SYSCON_ETH' already exists. Overwrite? (y/n)${NC}%s "
-  read -r YN
-else
-  YN="Y"
-fi
+install_thingy 600 root root "/etc/NetworkManager/system-connections/Schaeufele_Ethernet.nmconnection"
+install_thingy 600 root root "/etc/NetworkManager/system-connections/Schaeufele_Wi-Fi.nmconnection"
+install_thingy 644 root root "/etc/systemd/network/80-can.network"
+
+printf "${GREEN}set wifi region? (y/n)${NC}%s "
+read -r YN
 if [ "$YN" = "y" ]||[ "$YN" = "Y" ]; then
-  cp "./etc/NetworkManager/system-connections/Schaeufele_Ethernet.nmconnection" $DEST_SYSCON_ETH
-  chmod 600 $DEST_SYSCON_ETH
-  set_owner_and_group_to_root $DEST_SYSCON_ETH
+  RET=1
+  while [ $RET != 0 ]; do
+    printf "${GREEN}what region? (2 char name)${NC}%s "
+    read -n2 -r REG
+    printf "\n"
+    sudo iw reg set "${REG}"
+    RET=$?
+  done
+  sudo iw reg get | grep country
 fi
-unset YN
-
-
-DEST_SYSCON_WIFI="/etc/NetworkManager/system-connections/Schaeufele_Wi-Fi.nmconnection"
-if [ -e $DEST_SYSCON_WIFI ]; then
-  printf "${YELLOW}WARN: file '$DEST_SYSCON_WIFI' already exists. Overwrite? (y/n)${NC}%s "
-  read -r YN
-else
-  YN="Y"
-fi
-if [ "$YN" = "y" ]||[ "$YN" = "Y" ]; then
-  cp "./etc/NetworkManager/system-connections/Schaeufele_Wi-Fi.nmconnection" $DEST_SYSCON_WIFI
-  chmod 600 $DEST_SYSCON_WIFI
-  set_owner_and_group_to_root $DEST_SYSCON_WIFI
-fi
-unset YN
-
-
-DEST_SYSD_CAN="/etc/systemd/network/80-can.network"
-if [ -e $DEST_SYSD_CAN ]; then
-  printf "${YELLOW}WARN: file '$DEST_SYSD_CAN' already exists. Overwrite? (y/n)${NC}%s "
-  read -r YN
-else
-  YN="Y"
-fi
-if [ "$YN" = "y" ]||[ "$YN" = "Y" ]; then
-  cp "./etc/systemd/network/80-can.network" $DEST_SYSD_CAN
-  chmod 644 $DEST_SYSD_CAN
-  set_owner_and_group_to_root $DEST_SYSD_CAN
-fi
-unset YN
 
 # disable IPv6
 cat ./etc/sysctl.conf | sudo tee -a /etc/sysctl.conf
